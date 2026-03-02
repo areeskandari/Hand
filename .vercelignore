@@ -1,0 +1,5 @@
+chrome-extension
+.git
+*.md
+.env
+.env.*
