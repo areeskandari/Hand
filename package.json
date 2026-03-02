@@ -1,0 +1,9 @@
+{
+  "name": "grid-newtab-api",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@vercel/kv": "^0.2.0",
+    "resend": "^4.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Hand AI - Newtab Assisstant",
+  "version": "1.0.0",
+  "description": "a new ai hand that you need.",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "permissions": ["storage"]
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Tab</title>
+  <link rel="stylesheet" href="css/newtab.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Onboarding: modal box (no dismiss) -->
+  <div id="onboarding" class="onboarding" aria-label="Onboarding" hidden>
+    <div class="onboarding-box">
+      <!-- Step 0: Email or Google -->
+      <div id="onboard-step-0" class="onboard-step" data-step="0">
+        <h1 class="onboard-title">Welcome</h1>
+        <p class="onboard-desc">Sign in with email or Google to continue.</p>
+        <form id="onboard-form-0" class="onboard-form">
+          <div class="onboard-field">
+            <label for="onboard-email" class="sr-only">Email</label>
+            <input type="email" id="onboard-email" class="input" placeholder="your@email.com" autocomplete="email" />
+          </div>
+          <button type="submit" class="btn btn-primary">Continue with email</button>
+          <div class="onboard-divider">or</div>
+          <button type="button" class="btn btn-google" id="onboard-google">
+            <i class="fa-brands fa-google"></i>
+            Login with Google
+          </button>
+        </form>
+        <p class="onboard-privacy">
+          We use your email only to verify your account. Read our
+          <a href="https://example.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.
+        </p>
+      </div>
+
+      <!-- Step 1: First name, Last name + Theme cards -->
+      <div id="onboard-step-1" class="onboard-step" data-step="1" hidden>
+        <button type="button" class="onboard-back" id="onboard-back-1" aria-label="Back">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <h1 class="onboard-title">Almost there</h1>
+        <p class="onboard-desc">Your name and choose a theme.</p>
+        <form id="onboard-form-1" class="onboard-form">
+          <div class="onboard-row">
+            <div class="onboard-field">
+              <label for="onboard-first-name">First name <span class="required">*</span></label>
+              <input type="text" id="onboard-first-name" class="input" placeholder="First" autocomplete="given-name" required />
+            </div>
+            <div class="onboard-field">
+              <label for="onboard-last-name">Last name</label>
+              <input type="text" id="onboard-last-name" class="input" placeholder="Last" autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="onboard-field">
+            <span class="onboard-label-block">Select theme</span>
+            <div class="theme-cards" role="group" aria-label="Theme">
+              <button type="button" class="theme-card" data-theme="dark" aria-pressed="false">
+                <span class="theme-card-preview theme-preview-dark">
+                  <span class="theme-preview-time">12:20</span>
+                  <span class="theme-preview-date">Sat, 29 Jun 2024</span>
+                </span>
+                <span class="theme-card-label">Dark</span>
+              </button>
+              <button type="button" class="theme-card selected" data-theme="light" aria-pressed="true">
+                <span class="theme-card-preview theme-preview-light">
+                  <span class="theme-preview-time">12:20</span>
+                  <span class="theme-preview-date">Sat, 29 Jun 2024</span>
+                </span>
+                <span class="theme-card-label">Light</span>
+              </button>
+              <button type="button" class="theme-card" data-theme="glass" aria-pressed="false">
+                <span class="theme-card-preview theme-preview-glass">
+                  <span class="theme-preview-time">12:20</span>
+                  <span class="theme-preview-date">Sat, 29 Jun 2024</span>
+                </span>
+                <span class="theme-card-label">Glassy</span>
+              </button>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Continue</button>
+        </form>
+      </div>
+
+      <!-- Step 2: Verification link (email only) -->
+      <div id="onboard-step-2" class="onboard-step" data-step="2" hidden>
+        <button type="button" class="onboard-back" id="onboard-back-2" aria-label="Back">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <h1 class="onboard-title">Verify your email</h1>
+        <p class="onboard-desc" id="onboard-verify-desc">We've sent a verification link to your email. Please click it as soon as possible. The link expires in 1 hour.</p>
+        <div class="onboard-form">
+          <p id="onboard-verify-error" class="onboard-error" hidden></p>
+          <button type="button" class="btn btn-primary" id="onboard-verify-btn">Got it</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main app -->
+  <main class="app" id="app" hidden>
+    <!-- Home: grid -->
+    <section class="app-page" id="page-home" aria-label="Home">
+      <div class="grid-container" aria-label="Widget grid">
+        <div class="grid" id="widget-grid"></div>
+      </div>
+    </section>
+    <!-- Widget store -->
+    <section class="app-page app-page--blank" id="page-widgets" aria-label="Widget store" hidden>
+      <div class="blank-page">
+        <h1 class="blank-page-title">Widget store</h1>
+        <p class="blank-page-desc">Widgets you add will appear here.</p>
+      </div>
+    </section>
+    <!-- Settings -->
+    <section class="app-page app-page--blank" id="page-settings" aria-label="Settings" hidden>
+      <div class="blank-page">
+        <h1 class="blank-page-title">Settings</h1>
+        <p class="blank-page-desc">Settings will appear here.</p>
+      </div>
+    </section>
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button type="button" class="nav-item" data-page="widgets" title="Widgets">
+        <i class="fa-solid fa-th-large nav-icon" aria-hidden="true"></i>
+        <span class="nav-label">Widgets</span>
+      </button>
+      <button type="button" class="nav-item active" data-page="home" title="Home">
+        <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+        <span class="nav-label">Home</span>
+      </button>
+      <button type="button" class="nav-item" data-page="settings" title="Settings">
+        <i class="fa-solid fa-gear nav-icon" aria-hidden="true"></i>
+        <span class="nav-label">Settings</span>
+      </button>
+    </nav>
+  </main>
+
+  <script src="js/newtab.js" type="module"></script>
+</body>
+</html>
